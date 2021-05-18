@@ -1,0 +1,37 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.batcha.gradle.plugins:git-dependencies:0.2'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName='com.mrd.bitlib.BackupUtil'
+project.ext.set("mainClassName", mainClassName)
+
+repositories {
+    google()
+    jcenter()
+}
+
+dependencies {
+    implementation project(includePrefix + ':bitlib')
+    implementation "com.google.guava:guava:$rootProject.guavaVersion"
+    testImplementation "junit:junit:$junitVersion"
+}
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": project.mainClassName,
+                "Implementation-Version": version ?: 'dev'
+        )
+    }
+}

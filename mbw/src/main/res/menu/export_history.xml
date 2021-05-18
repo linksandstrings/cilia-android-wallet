@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:yourapp="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:ignore="MissingTranslation">
+
+    <item android:id="@+id/miExportHistory"
+          android:title="@string/export_history"
+          android:orderInCategory="1"
+          yourapp:showAsAction="never" />
+
+</menu>

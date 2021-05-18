@@ -1,0 +1,72 @@
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'application'
+apply from: 'integration-test.gradle'
+
+repositories {
+    google()
+    jcenter()
+}
+
+dependencies {
+    implementation project(includePrefix +':bitlib')
+    implementation project(includePrefix +':mbwlib')
+    implementation project(includePrefix +':wapi')
+    implementation project(includePrefix +':walletmodel')
+    implementation project(includePrefix +':walletcore')
+
+    implementation "com.google.guava:guava:$rootProject.guavaVersion"
+    implementation "com.fasterxml.jackson.core:jackson-core:2.9.5"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$jacksonAnnotationsVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonDatabindVersion"
+    implementation "com.google.http-client:google-http-client-jackson2:$httpClientJacksonVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation "com.squareup.sqldelight:sqlite-driver:$sqldelight_version"
+
+    runtime 'org.jetbrains.kotlin:kotlin-reflect:1.3.72'
+
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:2.23.0"
+}
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+mainClassName = "com.mycelium.WalletConsole"
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.mycelium.WalletConsole'
+    }
+}

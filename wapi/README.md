@@ -1,0 +1,1 @@
+Module *wapi* contains Electrum and Cilia WAPI client implementations.

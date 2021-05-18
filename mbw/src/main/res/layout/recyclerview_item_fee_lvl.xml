@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="120dp"
+    android:layout_height="75dp"
+    android:background="@drawable/sender_recyclerview_item_background_selector">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/categorytextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:lines="1"
+            android:textColor="@color/horizontalpicker_text_color"
+            android:textSize="12sp"
+            tools:text="My BTC Account" />
+        <!-- single line produce bug API 19,
+            hide(not show on page but you can see view in layout inspector)
+            text view in random cases,
+            so we shouldn't use it here -->
+        <TextView
+            android:id="@+id/itemTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:maxLines="1"
+            android:textColor="@color/horizontalpicker_text_color"
+            android:textSize="14sp"
+            tools:text="MRD" />
+
+        <TextView
+            android:id="@+id/valueTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:textColor="@color/horizontalpicker_text_color"
+            android:textSize="12sp"
+            tools:text="0.5556 BTC" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/rectangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:duplicateParentState="true"
+        android:scaleType="center"
+        android:src="@drawable/recyclerview_item_bottom_rectangle_selector" />
+</FrameLayout>

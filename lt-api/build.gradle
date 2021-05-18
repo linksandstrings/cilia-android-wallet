@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+repositories {
+    google()
+    jcenter()
+}
+
+dependencies {
+    implementation project(includePrefix +':bitlib')
+    implementation project(includePrefix +':mbwlib')
+
+    implementation "com.google.guava:guava:$rootProject.guavaVersion"
+    implementation "com.squareup.okhttp:okhttp:$okhttpVersion"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$jacksonAnnotationsVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonDatabindVersion"
+    testImplementation "junit:junit:$junitVersion"
+}

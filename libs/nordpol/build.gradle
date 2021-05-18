@@ -1,0 +1,25 @@
+apply plugin: 'com.android.library'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+    }
+}
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidSdkBuildVersion
+
+    defaultConfig {
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+    }
+    lintOptions {
+        ignoreWarnings true
+    }
+}

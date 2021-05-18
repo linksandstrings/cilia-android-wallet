@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.cilia.wallet">
+    <!-- basics -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- sending an NFC payment request -->
+    <uses-permission android:name="android.permission.NFC" /> <!-- scanning qr codes -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- location for local trader -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- the license checker -->
+    <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
+
+    <!-- for full size camera photo  -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" /> <!-- nexus 7 has no backside camera but frontside camera should be able to scan -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <application
+        android:name=".WalletApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
+        android:theme="@style/CiliaModern">
+
+        <meta-data
+            android:name="firebase_analytics_collection_deactivated"
+            android:value="true" /> <!-- file provider to enable secure intent sharing for encrypted backups -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.files"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/my_paths" />
+        </provider> <!-- Service for Cloud Messaging -->
+        <service android:name=".lt.notification.FcmListenerService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <!-- Startup -->
+        <activity
+            android:name=".activity.StartupActivity"
+            android:label="@string/app_short_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaLauncher">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- bitcoin uri scheme -->
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="bitcoin" />
+            </intent-filter>
+
+            <!-- bitcoinil uri scheme -->
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="bitcoinil" />
+            </intent-filter>
+
+            <!-- payment request mime type uri scheme -->
+            <intent-filter android:label="@string/app_name"
+                    tools:ignore="AppLinkUrlError">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:mimeType="application/bitcoin-paymentrequest" />
+            </intent-filter>
+
+            <!-- bitid authentication scheme -->
+            <intent-filter android:label="@string/bitid_authentication">
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="bitid" />
+            </intent-filter>
+
+            <!-- BIP 121 Proof of Payment URI scheme -->
+            <intent-filter android:label="@string/pop_send_pop">
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="btcpop" />
+            </intent-filter>
+
+            <!-- used as a callback url from within the browser after signup -->
+            <intent-filter android:label="@string/mycelium">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="mycelium" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!--
+                  ATTENTION: This data URL was auto-generated. We recommend that you use the HTTP scheme.
+                  TODO: Change the host or pathPrefix as necessary.
+                -->
+                <data
+                    android:host="wallet.mycelium.com"
+                    android:pathPrefix="/startup"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.modern.ModernMain"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaActionBar" />
+        <activity android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.modern.GetFromAddressBookActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.AddAccountActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaFIO"/>
+        <activity android:name=".activity.AddAdvancedAccountActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.AddColuAccountActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.ScanActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".activity.CustomCaptureActivity"
+            android:stateNotNeeded="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.TransactionDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaNoActionBarFullScreen" />
+        <activity
+            android:name=".activity.settings.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/settings"
+            android:theme="@style/CiliaSettings" />
+        <activity
+            android:name=".activity.settings.SetLocalCurrencyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaSettings" />
+        <activity
+            android:name=".activity.export.ExportAsQrActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaNoActionBarFullScreen" />
+        <activity android:name=".activity.export.BackupToPdfActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.export.MrdDecryptDataActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.export.VerifyBackupActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.export.DecryptBip38PrivateKeyActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.send.GetSpendingRecordActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.modern.UnspentOutputsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.send.InstantWalletActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.send.SendInitializationActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.send.ColdStorageSummaryActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".activity.send.SendCoinsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaFIOMapping" />
+        <activity
+            android:name=".activity.send.ManualAddressEntry"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaFIOMapping" />
+        <activity android:name=".activity.send.SignTransactionActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".activity.receive.ReceiveCoinsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaFIOMapping" />
+        <activity android:name=".simplex.SimplexMainActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".external.changelly.ChangellyActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".external.changelly.ChangellyOfferActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.LtMainActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.CreateTrader1Activity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.CreateTrader2Activity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.CreateTrader3Activity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.SolveCaptchaActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".lt.activity.TradeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".lt.activity.ChangeLocationActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".lt.activity.EnterLocationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible" />
+        <activity android:name=".lt.activity.ChangePriceActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.RefreshPriceActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.EnterFiatAmountActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.ViewTraderInfoActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.buy.CreateTradeActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.buy.SetTradeAddress"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.sell.CreateOrEditAdActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".lt.activity.SendRequestActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.UpdateNotificationActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".activity.RestartPopupActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaModern.Dialog.Transparent" />
+        <activity android:name=".activity.PinProtectedActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.MessageSigningActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.EnterWordListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.BackupWordListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.VerifyWordListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.AdditionalBackupWarningActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.modern.HDSigningActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.BipSsImportActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.CreateKeyActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.HandleUrlActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".extsig.trezor.activity.InstantTrezorActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".extsig.trezor.activity.TrezorAccountImportActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".extsig.trezor.activity.TrezorSignTransactionActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".extsig.keepkey.activity.InstantKeepKeyActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".extsig.keepkey.activity.KeepKeyAccountImportActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".extsig.keepkey.activity.KeepKeySignTransactionActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".extsig.ledger.activity.LedgerAccountImportActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".extsig.ledger.activity.LedgerSignTransactionActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.InstantMasterseedActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.ConnectionLogsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".activity.GetAmountActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaFIOMapping" />
+        <activity android:name=".activity.StringHandlerActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.send.VerifyPaymentRequestActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".bitid.BitIDAuthenticationActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_bit_idauthentication" />
+        <activity android:name=".activity.pop.PopActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.pop.PopSelectTransactionActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".external.BuySellSelectActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.MessageVerifyActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".external.changelly.bch.ExchangeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaExchange" />
+        <activity
+            android:name=".activity.settings.SetSegwitChangeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaSettings" />
+        <activity
+            android:name=".activity.news.NewsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaNews">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".activity.news.NewsSearchableActivity" />
+        </activity>
+        <activity
+            android:name=".activity.news.NewsImageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.export.ExportFioKeyActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".activity.fio.registername.RegisterFioNameActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/CiliaFIOMapping" />
+
+        <activity
+            android:name=".activity.fio.registerdomain.RegisterFIODomainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/CiliaFIOMapping" />
+
+        <activity
+            android:name=".activity.fio.mapaccount.AccountMappingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaFIOMapping" />
+
+        <activity android:name=".activity.fio.requests.FioRequestCreateActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaFIOMapping"/>
+
+        <activity android:name=".activity.fio.requests.ApproveFioRequestActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaFIOMapping"/>
+
+        <activity android:name=".activity.fio.requests.ApproveFioRequestSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaFIOMapping"/>
+
+        <activity android:name=".activity.fio.requests.SentFioRequestStatusActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CiliaFIOMapping"/>
+        
+        <service android:name=".fio.FioRequestService"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.mycelium.bequant.intro.BequantIntroActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name="com.mycelium.bequant.market.BequantMarketActivity"
+            android:theme="@style/Bequant"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name="com.mycelium.bequant.kyc.BequantKycActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Bequant"/>
+        <activity
+            android:name="com.mycelium.bequant.exchange.SelectCoinActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BequantSign"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name="com.mycelium.bequant.sign.SignActivity"
+            android:theme="@style/BequantSign"
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="Email confirmation">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="reg.bequant.io"
+                    android:pathPrefix="/account/email/confirm"
+                    android:scheme="https" />
+            </intent-filter>
+            <intent-filter
+                android:autoVerify="true"
+                android:label="Password reset confirmation">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="reg.bequant.io"
+                    android:pathPrefix="/account/password/set"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mycelium.bequant.signup.TwoFactorActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@style/BequantSign">
+            <intent-filter android:label="deeplink_to_totp_confirm">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="reg.bequant.io"
+                    android:pathPrefix="/account/totp/confirm"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

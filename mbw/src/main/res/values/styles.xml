@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="GenericButton" parent="@android:style/Widget.Button">
+        <!--        <item name="android:layout_width">fill_parent</item>
+                <item name="android:layout_height">wrap_content</item>
+                <item name="android:textColor">@color/button_text_color</item>
+                <item name="android:gravity">center</item>
+                <item name="android:layout_margin">3dp</item>
+                <item name="android:textStyle">bold</item>
+                <item name="android:shadowColor">#000000</item>
+                <item name="android:shadowDx">1</item>
+                <item name="android:shadowDy">1</item>
+                <item name="android:shadowRadius">2</item>-->
+    </style>
+
+    <style name="GenericText">
+        <!--
+                <item name="android:layout_width">fill_parent</item>
+                <item name="android:layout_height">wrap_content</item>
+                <item name="android:textColor">#ffffff</item>
+                <item name="android:layout_margin">3dp</item>
+                <item name="android:shadowColor">#000000</item>
+                <item name="android:shadowDx">1</item>
+                <item name="android:shadowDy">1</item>
+                <item name="android:shadowRadius">2</item>
+        -->
+    </style>
+
+    <style name="QRCodeStyle">
+        <item name="android:background">@drawable/qr_code</item>
+    </style>
+
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+    -->
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+        <item name="colorPrimary">@color/transparent</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:windowBackground">@drawable/background_window</item>
+
+    </style>
+
+    <style name="CiliaLauncher" parent="CiliaModern">
+        <item name="android:windowBackground">@drawable/background_launcher_centered</item>
+    </style>
+
+
+    <style name="CiliaActionBar" parent="CiliaModern">
+        <!-- Load it later in code with a lower pixel format, to save some memory
+        <item name="android:windowBackground">@drawable/background_witherrors_centered</item>-->
+
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
+    </style>
+
+
+    <style name="CiliaSettings" parent="CiliaModern">
+        <item name="colorAccent">@color/lightgrey</item>
+        <item name="colorControlActivated">@color/common_blue</item>
+        <item name="android:colorControlActivated" tools:ignore="NewApi">@color/common_blue</item>
+        <item name="android:actionBarStyle">@style/CiliaSettings.ActionBar</item>
+        <item name="actionBarStyle">@style/CiliaSettings.ActionBar</item>
+        <item name="preferenceTheme">@style/CiliaSettingsPreferenceThemeOverlay</item>
+        <item name="preference_module_item_color">@color/preference_item_color</item>
+        <item name="preference_module_divider_color">@color/preference_background</item>
+    </style>
+
+    <style name="CiliaSettings.Dialog" parent="CiliaSettings.Dialog.Small">
+        <item name="windowFixedHeightMajor">344dp</item>
+        <item name="windowFixedHeightMinor">80%</item>
+    </style>
+
+    <style name="CiliaSettings.Dialog.Small" parent="CiliaModern.Dialog">
+        <item name="colorAccent">@color/common_blue</item>
+        <item name="android:colorAccent" tools:ignore="NewApi">@color/common_blue</item>
+        <item name="buttonBarButtonStyle">@style/CiliaSettings.ButtonBarButtonStyle</item>
+        <item name="android:windowTitleStyle">@style/CiliaSettings.DialogTitle</item>
+        <item name="android:windowBackground">@drawable/dialog_background_pref</item>
+
+        <item name="windowFixedWidthMajor">50%</item>
+        <item name="windowFixedWidthMinor">80%</item>
+
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+    <style name="CiliaSettings.DialogTitle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+    </style>
+
+    <style name="CiliaSettings.ButtonBarButtonStyle" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/common_blue</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="CiliaSettingsPreferenceThemeOverlay" parent="PreferenceThemeOverlay.v14.Material">
+        <item name="preferenceFragmentCompatStyle">@style/CiliaSettingsPreferenceFragment</item>
+        <item name="preferenceFragmentStyle">@style/CiliaSettingsPreferenceFragment</item>
+    </style>
+
+    <style name="CiliaSettingsPreferenceFragment" parent="PreferenceFragment.Material">
+        <item name="android:divider">@drawable/pref_list_divider</item>
+    </style>
+
+    <style name="CiliaSettings.ActionBar" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="background">@color/pref_background</item>
+        <item name="android:height">56dp</item>
+        <item name="height">56dp</item>
+        <item name="titleTextStyle">@style/CiliaSettings.ActionBar.Title</item>
+        <item name="android:titleTextStyle">@style/CiliaSettings.ActionBar.Title</item>
+    </style>
+
+    <style name="CiliaSettings.ActionBar.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.02</item>
+    </style>
+
+    <!-- Application theme. Theme.AppCompat.Base.CompactMenu.Dialog -->
+    <style name="CiliaModern.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:actionButtonStyle" tools:ignore="NewApi">@style/ActionButtonStyle</item>
+        <item name="actionButtonStyle">@style/ActionButtonStyle</item>
+        <item name="android:buttonStyle">@style/CiliaButton</item>
+        <item name="android:textViewStyle">@style/CiliaText</item>
+
+        <item name="android:windowBackground">@drawable/dialog_background</item>
+        <item name="android:backgroundDimAmount">0.9</item>
+    </style>
+
+    <style name="CiliaModern.Dialog.BlueButtons">
+        <item name="android:buttonStyle">@style/CiliaButton.Blue</item>
+        <item name="android:windowTitleStyle">@style/BlueDialogTitle</item>
+    </style>
+
+    <style name="CiliaModern.Dialog.Transparent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="CiliaNoActionBarFullScreen" parent="CiliaModern">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="CiliaModern" parent="AppBaseTheme">
+        <!--<item name="android:windowFullscreen">true</item>-->
+
+        <item name="android:popupBackground">@drawable/semi_black</item>
+
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:actionButtonStyle" tools:ignore="NewApi">@style/ActionButtonStyle</item>
+        <item name="actionButtonStyle">@style/ActionButtonStyle</item>
+        <item name="android:buttonStyle">@style/CiliaButton</item>
+        <item name="android:textViewStyle">@style/CiliaText</item>
+
+        <item name="actionBarTabStyle">@style/CiliaTabStyle</item>
+        <item name="actionBarTabBarStyle">@style/CiliaTabBarStyle</item>
+        <item name="actionBarTabTextStyle">@style/CiliaTabTextStyle</item>
+
+        <item name="android:actionModeBackground">@color/selectedrecord</item>
+
+        <item name="android:actionModeStyle">@style/ActionModeStyle</item>
+        <item name="actionModeStyle">@style/ActionModeStyle</item>
+        <item name="actionMenuTextAppearance">@style/ActionMenuTextStyle</item>
+
+        <item name="android:dropDownListViewStyle">@style/DropDownListViewStyle</item>
+        <item name="dropDownListViewStyle">@style/DropDownListViewStyle</item>
+
+        <item name="actionBarStyle">@style/CiliaActionBarStyle</item>
+
+    </style>
+
+    <style name="CiliaActionBarStyle" parent="Widget.AppCompat.ActionBar.Solid">
+        <item name="height">48dp</item>
+    </style>
+
+    <style name="CiliaTabStyle" parent="Widget.AppCompat.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_material</item>
+    </style>
+
+    <style name="CiliaTabBarStyle" parent="Widget.AppCompat.Light.ActionBar.TabBar">
+        <item name="android:background">@drawable/action_bar_tab_bar_bg</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <style name="CiliaTabTextStyle" parent="Widget.AppCompat.Light.ActionBar.TabText">
+        <item name="textAllCaps">true</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingTop">6dp</item>
+    </style>
+
+    <style name="DropDownListViewStyle" parent="@style/Widget.AppCompat.ListView.DropDown">
+        <item name="android:divider">@color/grey</item>
+        <item name="android:dividerHeight">0.5dp</item>
+    </style>
+
+    <style name="CiliaSlimButton" parent="android:style/Widget.Button">
+        <item name="android:layout_marginStart">1dp</item>
+        <item name="android:layout_marginEnd">1dp</item>
+        <item name="android:background">@drawable/btn_blue_slim</item>
+        <item name="android:textColor">@color/button_text_color</item>
+    </style>
+
+    <style name="CiliaSlimButtonExchangeRate" parent="android:style/Widget.Button">
+        <item name="android:layout_marginStart">1dp</item>
+        <item name="android:layout_marginEnd">1dp</item>
+        <item name="android:background">@drawable/btn_gray_slim</item>
+        <item name="android:textColor">@color/button_text_color</item>
+    </style>
+
+    <style name="CiliaNumPadButtonFn" parent="android:style/Widget.Button">
+        <item name="android:background">@drawable/btn_blue_light_slim</item>
+        <item name="android:textColor">@color/button_text_color</item>
+
+    </style>
+
+    <style name="CiliaSlimButtonFn" parent="CiliaSlimButton">
+        <item name="android:background">@drawable/btn_blue_light_slim</item>
+    </style>
+
+    <style name="CiliaPinpadButtonFn" parent="CiliaPinpadButton">
+        <item name="android:background">@drawable/btn_blue_light_slim</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="CiliaHexPinpadButtonFn" parent="CiliaHexPinpadButton">
+        <item name="android:background">@drawable/btn_blue_light_slim</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="CiliaPinpadButton" parent="CiliaSlimButton">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginStart">1dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:layout_margin">2dp</item>
+    </style>
+
+    <style name="CiliaHexPinpadButton" parent="CiliaSlimButton">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginStart">1dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:layout_margin">2dp</item>
+    </style>
+
+    <style name="CiliaButton" parent="android:style/Widget.Button">
+        <!--<item name="android:textSize">19sp</item>-->
+        <!--<item name="android:layout_margin">0dip</item>-->
+        <!--<item name="android:background">#0000FF</item>-->
+        <item name="android:layout_marginStart">3dp</item>
+        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/btn_blue</item>
+        <item name="android:textColor">@color/button_text_color</item>
+    </style>
+
+    <style name="FioNameRegistrationButton" parent="CiliaButton">
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:paddingTop">14dp</item>
+    </style>
+
+    <style name="CiliaButton.Blue">
+        <item name="android:textColor">@color/button_blue_text_color</item>
+    </style>
+
+    <style name="CiliaText" parent="android:TextAppearance">
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="ActionButtonStyle" parent="Widget.AppCompat.Light.ActionButton">
+        <item name="android:minWidth">1dip</item>
+        <!--
+                <item name="android:paddingLeft">0dip</item>
+                <item name="android:paddingRight">0dip</item>
+        -->
+    </style>
+
+    <style name="ActionModeStyle" parent="Widget.AppCompat.ActionMode">
+        <item name="height">48dp</item>
+    </style>
+
+    <style name="ActionMenuTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="RmcActiveProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/rmc_bg_active_progress_bar_state</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+    </style>
+
+    <style name="AccountProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorAccent">@color/dark_sky_blue</item>
+    </style>
+
+    <style name="CiliaDroppyPopup">
+        <item name="android:background">#343434</item>
+    </style>
+
+    <style name="CiliaMenuItem">
+        <item name="android:background">#343434</item>
+    </style>
+
+    <style name="CiliaMenuItemTitle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+
+    </style>
+
+    <style name="CiliaDroppyMenuSeparator">
+        <item name="android:background">@color/lightgrey</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="CiliaExchange" parent="CiliaModern">
+        <item name="actionBarStyle">@style/CiliaExchangeActionBarStyle</item>
+    </style>
+
+    <style name="CiliaExchangeActionBarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="height">48dp</item>
+        <item name="titleTextStyle">@style/ExchangeTitleText</item>
+    </style>
+
+    <style name="ExchangeTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="CiliaButtonModern" parent="android:style/Widget.Button">
+        <item name="android:layout_marginStart">3dp</item>
+        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:background">@drawable/background_action_btn</item>
+        <item name="android:textColor">@color/btn_text_color_selector</item>
+        <item name="android:paddingStart">@dimen/button_padding_large</item>
+        <item name="android:paddingEnd">@dimen/button_padding_large</item>
+    </style>
+
+    <style name="Switch" parent="Theme.AppCompat.Light">
+        <item name="colorSwitchThumbNormal">@color/lightgrey</item>
+        <item name="android:colorForeground">@color/grey</item>
+        <item name="colorControlActivated">@color/buttonredcolor</item>
+    </style>
+
+    <style name="CiliaNews" parent="CiliaModern">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="MediaFlowTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="CiliaNewsSearchView">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="CiliaFIO" parent="CiliaModern">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="BuySell.Dialog" parent="CiliaModern.Dialog">
+        <item name="android:windowTitleStyle">@style/BlueDialogTitle</item>
+    </style>
+
+    <style name="BlueDialogTitle">
+        <item name="android:textColor">@color/common_blue</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CiliaFIOMapping" parent="CiliaModern">
+        <item name="colorAccent">@color/lightgrey</item>
+        <item name="colorControlActivated">@color/common_blue</item>
+        <item name="android:colorControlActivated" tools:ignore="NewApi">@color/common_blue</item>
+        <item name="android:actionBarStyle">@style/CiliaFIOMapping.ActionBar</item>
+        <item name="actionBarStyle">@style/CiliaFIOMapping.ActionBar</item>
+    </style>
+
+    <style name="CiliaFIOMapping.ActionBar" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="background">@color/black</item>
+        <item name="android:height">56dp</item>
+        <item name="height">56dp</item>
+        <item name="titleTextStyle">@style/CiliaFIOMapping.ActionBar.Title</item>
+        <item name="android:titleTextStyle">@style/CiliaFIOMapping.ActionBar.Title</item>
+    </style>
+
+    <style name="CiliaFIOMapping.ActionBar.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="myfiowallet">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="fio_account">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="FIOAccountSubGroup">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#99FFFFFF</item>
+    </style>
+
+    <style name="FIOAccountGroup">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="CiliaButton.FIO">
+        <item name="android:minHeight">44dp</item>
+    </style>
+
+    <style name="CiliaButton.FIO.Gray">
+        <item name="android:background">@drawable/btn_gray</item>
+    </style>
+    <style name="CustomDialog" parent="AppBaseTheme" >
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <style name="Bequant" parent="CiliaModern">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/bequant_gray_2</item>
+        <item name="android:radioButtonStyle">@style/Bequant.Button.Small.RadioButton</item>
+    </style>
+    <style name="BequantSign" parent="Bequant">
+        <item name="android:toolbarStyle" tools:ignore="NewApi">@style/BequantSignToolBarStyle</item>
+        <item name="toolbarStyle">@style/BequantSignToolBarStyle</item>
+    </style>
+    <style name="BequantSignToolBarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/transparent</item>
+        <item name="titleTextAppearance">@style/BequantSignTitleTextAppearance</item>
+        <item name="android:titleTextAppearance" tools:ignore="NewApi">@style/BequantSignTitleTextAppearance</item>
+<!--        <item name="subtitleTextAppearance">@style/MySubTitleTextAppearance</item>-->
+    </style>
+    <style name="BequantSignTitleTextAppearance">
+        <item name="android:fontFamily">@font/exo2medium</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Bequant.TextView">
+        <item name="android:fontFamily">@font/exo2medium</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Bequant.Button">
+        <item name="android:fontFamily">@font/exo2medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/bg_bequant_button</item>
+        <item name="android:textColor">@color/bequant_gray_2</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Bequant.Button.PrimarySmall">
+        <item name="android:buttonStyle">@style/CiliaButton</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:background">@drawable/bg_bequant_button_primary_small</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Bequant.Button.PrimarySmall.Ghost">
+        <item name="android:textColor">@color/bequant_yellow</item>
+        <item name="android:background">@drawable/bg_bequant_button_primary_small_ghost</item>
+    </style>
+
+    <style name="Bequant.Button.Green">
+        <item name="android:background">@drawable/bg_bequant_button_green</item>
+    </style>
+    <style name="Bequant.Button.Small">
+        <item name="android:background">@drawable/bg_bequant_button_small</item>
+        <item name="android:textColor">@color/bequant_yellow</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="Bequant.Tabs">
+        <item name="android:background">@color/bequant_gray_3</item>
+        <item name="tabIndicatorColor">@color/bequant_yellow</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabGravity">fill</item>
+        <item name="tabTextAppearance">@style/BequantTabText</item>
+    </style>
+
+    <style name="Bequant.EditText">
+        <item name="android:background">@drawable/bg_bequant_input_text</item>
+        <item name="android:fontFamily">@font/exo2medium</item>
+        <item name="android:padding">8dp</item>
+        <item name="textSize">16sp</item>
+        <item name="hintTextColor">@color/bequant_gray_6</item>
+    </style>
+
+    <style name="BequantTabText" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="fontFamily">@font/exo2medium</item>
+    </style>
+
+    <style name="Bequant.TextInputLayout">
+        <item name="boxBackgroundColor">@color/bg_bequant_text_input_layout</item>
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxCornerRadiusBottomEnd">4dp</item>
+        <item name="boxCornerRadiusBottomStart">4dp</item>
+        <item name="boxCornerRadiusTopEnd">4dp</item>
+        <item name="boxCornerRadiusTopStart">4dp</item>
+        <item name="boxStrokeColor">@color/outline_bequant_text_input_layout</item>
+        <item name="errorTextColor">@color/bequant_red</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style name="Bequant.TabLayout">
+        <item name="tabBackground">@drawable/bequant_intro_dot_inactive</item>
+        <item name="tabGravity">center</item>
+        <item name="tabIndicator">@drawable/bequant_intro_dot_active</item>
+        <item name="tabIndicatorColor">@color/bequant_yellow</item>
+        <item name="tabIndicatorGravity">center</item>
+        <item name="tabMinWidth">12dp</item>
+        <item name="tabMaxWidth">12dp</item>
+        <item name="tabIndicatorHeight">8dp</item>
+    </style>
+
+    <style name="BequantErrorTextAppearance"></style>
+
+    <style name="Bequant.Button.Gray">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/bg_bequant_gray_btn</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+
+
+    <style name="Bequant.Button.Small.RadioButton">
+        <item name="android:background">@drawable/bg_bequant_radio_button</item>
+        <item name="android:textColor">@color/bequant_radio_button</item>
+    </style>
+
+    <style name="Bequant.TextTiny">
+        <item name="android:fontFamily">@font/exo2regular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:alpha">0.5</item>
+    </style>
+
+    <style name="Bequant.TextSmall">
+        <item name="android:fontFamily">@font/exo2medium</item>
+        <item name="android:textColor">@color/bequant_yellow</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Bequant.TextMiddle">
+        <item name="android:fontFamily">@font/exo2medium</item>
+        <item name="android:textColor">@color/bequant_gray_6</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Bequant.TextNormal">
+        <item name="android:fontFamily">@font/exo2medium</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Bequant.TextLarge">
+        <item name="android:fontFamily">@font/exo2medium</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Theme.D1NoTitleDim" parent="android:style/Theme.Translucent">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="DatePickerDialog" parent="android:style/Theme.Holo.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorControlNormal">@color/bequant_yellow</item>
+        <item name="android:colorControlNormal" tools:ignore="NewApi">@color/bequant_yellow</item>
+    </style>
+
+    <style name="Bequant.DatePickerStyle" >
+        <item name="android:datePickerMode" tools:targetApi="lollipop">spinner</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="NumberPickerStyle">
+        <item name="colorControlNormal">@color/bequant_yellow</item>
+        <item name="android:colorControlNormal" tools:targetApi="lollipop">@color/bequant_yellow</item>
+    </style>
+</resources>

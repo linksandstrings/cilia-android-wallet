@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+                name="viewModel"
+                type="com.cilia.wallet.activity.main.address.AddressFragmentViewModel"/>
+    </data>
+
+    <merge>
+        <TextView
+                android:id="@+id/tvAddressPath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="start"
+                android:textSize="12sp"
+                android:textColor="@color/lightgrey"
+                android:text="@{viewModel.addressPath}"
+                tools:text="m/44'/0'/0'/0/0"/>
+    </merge>
+</layout>

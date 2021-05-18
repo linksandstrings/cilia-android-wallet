@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/backup_missing_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/sender_recyclerview_background_red"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvBackupMissing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/single_address_backup_missing"
+                android:textSize="13dp" />
+            <CheckBox
+                android:id="@+id/cbRisks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/i_understand_the_risks"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnFirst"
+                style="@style/CiliaButtonModern"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_backup"
+                android:clickable="false"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:text="@string/verify"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnSecond"
+                style="@style/CiliaButtonModern"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_backup"
+                android:clickable="false"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/backup"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <Button
+            android:id="@+id/btWarning"
+            style="@style/CiliaButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/alert_button"
+            android:background="@drawable/btn_red"
+            android:textSize="20sp"
+            android:visibility="gone"/>
+
+    <Button
+            android:id="@+id/btPinResetNotice"
+            style="@style/CiliaButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/pin_reset_in_progress_alert"
+            android:background="@drawable/btn_red"
+            android:textSize="20sp"
+            android:visibility="gone"/>
+
+</LinearLayout>

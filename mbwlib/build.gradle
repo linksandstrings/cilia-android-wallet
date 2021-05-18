@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+repositories {
+    google()
+    jcenter()
+}
+
+dependencies {
+    implementation project(includePrefix +':bitlib')
+    implementation "com.google.guava:guava:$rootProject.guavaVersion"
+    // otto bus is deprecated in favor of rx but is cleaner with its annotations and type checking
+    implementation "com.squareup:otto:$ottoVersion"
+    implementation "com.squareup.okhttp:okhttp:$okhttpVersion"
+    implementation "com.squareup.wire:wire-runtime:$wireVersion"
+
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.64'
+
+    testImplementation "junit:junit:$junitVersion"
+}

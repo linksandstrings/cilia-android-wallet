@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:custom="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <!-- Balance -->
+
+    <LinearLayout
+        android:id="@+id/llBalance"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tvBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="0dp"
+                android:gravity="center_horizontal"
+                tools:text="21.000 BTC"
+                android:textSize="24sp" />
+
+            <ProgressBar
+                    android:id="@+id/pbProgress"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    />
+        </FrameLayout>
+
+
+        <com.cilia.wallet.activity.util.ToggleableCurrencyButton
+            android:id="@+id/tcdFiatDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            custom:fiatOnly="true"
+            custom:textSize="20sp"
+            custom:textColor="@color/lightgrey"
+            custom:hideOnNoExchangeRate="true"
+            />
+
+        <TextView
+            android:id="@+id/tvReceiving"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="0dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/semidarkgreen"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvReceivingFiat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="0dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/semidarkgreen"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvSending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="0dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/red"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvSendingFiat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="0dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+    <include
+        layout="@layout/layout_account_actoins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginBottom="@dimen/margin_medium"/>
+
+    <TextView
+        android:id="@+id/tvBtcRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/lightgrey"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:textSize="18sp"
+        tools:text="1 BTC ~ USD 10" />
+
+    <LinearLayout
+        android:id="@+id/exchangeSourceLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/exchangeSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/lightgrey"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/exchangeSourceArrow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            custom:srcCompat="@drawable/ic_arrow_drop_down" />
+    </LinearLayout>
+</LinearLayout>

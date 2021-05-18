@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/miBackup"
+        android:title="@string/backup_private_key" />
+    <item
+        android:id="@+id/miColdStorage"
+        android:title="@string/cold_storage"
+        yourapp:showAsAction="never" />
+        <item
+                android:id="@+id/miSettings"
+                android:title="@string/settings"/>
+
+</menu>

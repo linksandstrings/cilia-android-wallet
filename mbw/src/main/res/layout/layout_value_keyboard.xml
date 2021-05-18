@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.cilia.wallet.activity.view.ValueKeyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/numeric_keyboard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="#eceef1"
+    android:clickable="true"
+    android:focusable="true"
+    android:columnCount="5"
+    android:paddingEnd="8dp"
+    android:paddingStart="8dp"
+    android:layoutDirection="ltr">
+
+    <TextView
+        android:id="@+id/bottom_button"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/one"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        app:layout_column="1"
+        app:layout_row="1" />
+
+    <TextView
+        android:id="@+id/btn_2"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/two"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_column="2"
+        app:layout_gravity="fill_horizontal"
+        app:layout_row="1" />
+
+    <TextView
+        android:id="@+id/btn_3"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/three"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_column="3"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        app:layout_row="1" />
+
+    <ImageView
+        android:id="@+id/btn_copy"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:scaleType="center"
+        app:layout_column="4"
+        app:layout_gravity="fill"
+        app:layout_row="1"
+        app:srcCompat="@drawable/ic_content_paste_black" />
+
+    <TextView
+        android:id="@+id/btn_4"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/four"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_column="1"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        app:layout_row="2" />
+
+    <TextView
+        android:id="@+id/btn_5"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/five"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_column="2"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        app:layout_row="2" />
+
+    <TextView
+        android:id="@+id/btn_6"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/six"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_column="3"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        app:layout_row="2" />
+
+    <TextView
+        android:id="@+id/btn_max"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:text="@string/max"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_column="4"
+        app:layout_gravity="fill"
+        app:layout_row="2" />
+
+    <TextView
+        android:id="@+id/btn_7"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/seven"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_column="1"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        app:layout_row="3" />
+
+    <TextView
+        android:id="@+id/btn_8"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/eight"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_column="2"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        app:layout_row="3" />
+
+    <TextView
+        android:id="@+id/btn_9"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/nine"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_column="3"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        app:layout_row="3" />
+
+    <TextView
+        android:id="@+id/btn_dot"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/dot"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_column="1"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        app:layout_row="4" />
+
+
+    <TextView
+        android:id="@+id/top_button"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/zero"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_column="2"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        app:layout_row="4" />
+
+    <ImageView
+        android:id="@+id/btn_backspace"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:scaleType="center"
+        app:layout_column="3"
+        app:layout_gravity="fill"
+        app:layout_row="4"
+        app:srcCompat="@drawable/ic_backspace" />
+
+    <TextView
+        android:id="@+id/btn_done"
+        android:background="@drawable/bg_keyboard_item"
+        android:gravity="center"
+        android:scaleType="center"
+        app:layout_column="4"
+        app:layout_gravity="fill"
+        app:layout_row="4"
+        android:textColor="#5aa7e6"
+        android:textSize="20sp"
+        android:text="@string/ok" />
+
+</com.cilia.wallet.activity.view.ValueKeyboard>

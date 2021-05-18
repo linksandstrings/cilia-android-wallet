@@ -1,0 +1,3 @@
+include ':modularization-lib'
+include ':hello'
+include ':world'

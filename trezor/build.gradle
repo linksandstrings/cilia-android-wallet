@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+    }
+}
+
+repositories {
+    google()
+    jcenter()
+}
+
+dependencies {
+    implementation "androidx.legacy:legacy-support-v4:$xLegacyVersion"
+    implementation "com.google.protobuf:protobuf-java:$protoBufVersion"
+
+    testImplementation "junit:junit:$junitVersion"
+}
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidSdkBuildVersion
+
+    defaultConfig {
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+    }
+
+    lintOptions {
+        xmlReport false
+        quiet false
+        showAll true
+    }
+}

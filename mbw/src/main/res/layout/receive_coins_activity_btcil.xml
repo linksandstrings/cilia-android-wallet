@@ -1,0 +1,87 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="androidx.lifecycle.AndroidViewModel" />
+        <import type="android.view.View" />
+
+        <variable
+                name="activity"
+                type="androidx.appcompat.app.AppCompatActivity" />
+
+        <variable
+                name="viewModel"
+                type="com.cilia.wallet.activity.receive.ReceiveBtcILViewModel" />
+    </data>
+
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="false">
+
+        <LinearLayout
+                android:id="@+id/llRoot"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="60dp">
+
+            <!-- Receiving currency name, receiving amount and warning if amount don't match-->
+            <include
+                    layout="@layout/receive_coins_activity_heap"
+                    bind:viewModel="@{viewModel}" />
+
+            <!-- QR code and comment-->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/horizontal_page_margin"
+                android:layout_marginVertical="8dp">
+                <include layout="@layout/receive_coins_activity_qr" />
+                <include
+                    layout="@layout/receive_coins_activity_nfc"
+                    bind:activity="@{activity}"
+                    bind:viewModel="@{viewModel}" />
+            </FrameLayout>
+
+            <!-- Warning if account is RO -->
+            <include
+                    layout="@layout/receive_coins_activity_ro"
+                    bind:viewModel="@{viewModel}" />
+
+            <!-- Amount -->
+
+            <!-- Selecting address type to display -->
+            <include
+                layout="@layout/receive_coins_activity_amount"
+                bind:activity="@{activity}"
+                bind:viewModel="@{viewModel}" />
+
+            <include
+                    layout="@layout/receive_coins_activity_btcil_addr_type"
+                    bind:activity="@{activity}"
+                    bind:viewModel="@{viewModel}" />
+
+            <!-- BitcoinIL Address -->
+
+            <include
+                    layout="@layout/receive_coins_activity_addr"
+                    bind:viewModel="@{viewModel}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/horizontal_page_margin"
+                android:layout_marginVertical="24dp"
+                android:visibility="@{viewModel.fioNameList.isEmpty() ? View.GONE : View.VISIBLE}"
+                android:background="#33FFFFFF" />
+
+            <include
+                    layout="@layout/receive_coins_activity_fio_name"
+                    bind:viewModel="@{viewModel}" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ToggleableCurrencyButton">
+        <attr name="fiatOnly" format="boolean"/>
+        <attr name="hideOnNoExchangeRate" format="boolean"/>
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="color"/>
+        <attr name="precision" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name = "ViewPagerIndicator">
+        <attr name = "itemWidth" format = "dimension"/>
+        <attr name = "itemHeight" format = "dimension"/>
+        <attr name = "delimiterSize" format = "dimension"/>
+        <attr name = "itemIcon" format = "reference"/>
+        <attr name = "itemIconSelected" format = "reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundButton">
+        <attr name="backgroundColor" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundButtonWithText" >
+        <attr name="backgroundColor" />
+        <attr name="text" format="string|reference" />
+        <attr name="icon" />
+    </declare-styleable>
+
+    <declare-styleable name="OtpViewTheme">
+        <attr format="reference" name="otpViewStyle"/>
+    </declare-styleable>
+    <declare-styleable name="QrImageView">
+        <attr name="qrCode" format="string" />
+    </declare-styleable>
+
+
+</resources>

@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mycelium.modularizationtools">
+    <application>
+        <service
+            android:name=".MessageReceiver"
+            android:exported="true" />
+        <provider
+            android:name="com.mycelium.modularizationtools.PairingProvider"
+            android:exported="true"
+            android:authorities="${applicationId}.PairingProvider" />
+    </application>
+</manifest>

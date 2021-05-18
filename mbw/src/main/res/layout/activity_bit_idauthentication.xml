@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/tvBitIdWebsite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="16sp"
+            tools:text="Website..." />
+
+    <TextView
+            android:id="@+id/tvInsecureWarning"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="@string/bitid_unsecure_warning"
+            android:textColor="@color/yellow"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+    <TextView
+            android:id="@+id/tvBitidError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:textColor="@color/red"
+            tools:text="error"
+            tools:visibility="visible"
+            android:visibility="gone"/>
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/btClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="30dp"
+                android:gravity="center"
+                android:paddingEnd="30dp"
+                android:text="@string/close"
+                android:onClick="abort"/>
+
+        <Button
+                android:id="@+id/btSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:layout_marginStart="50dp"
+                android:layout_toEndOf="@+id/btClose"
+                android:text="@string/sign_bitid"
+                android:onClick="sign"/>
+
+    </RelativeLayout>
+</LinearLayout>
